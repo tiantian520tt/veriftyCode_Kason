@@ -51,6 +51,13 @@ def randomNoice(width, height):
 for i in range(0, 90):
     randomNoice(100, 500).save('random' + str(i) + '.jpg')
 
-with imageio.get_writer(uri = 'output.gif', mode = 'I', fps = 90) as writer:
-    for i in range(15):
-        writer.append_data(imageio.imread(f'random{i}.jpg'))
+
+#with imageio.get_writer(uri = 'output.gif', mode = 'I', fps = 90) as writer:
+#    for i in range(15):
+#        writer.append_data(imageio.imread(f'random{i}.jpg'))
+
+images = []
+for i in range(0, 90):
+    images.append(imageio.imread(f'random{i}.jpg'))
+
+imageio.mimsave("output.gif", images, duration=0, loop=0, fps=90)
